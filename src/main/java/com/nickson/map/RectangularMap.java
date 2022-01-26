@@ -1,7 +1,5 @@
 package com.nickson.map;
 
-import com.nickson.map.exception.InvalidPositionException;
-
 public class RectangularMap implements Plan2D {
 	
 	private Long xSize;
@@ -12,10 +10,19 @@ public class RectangularMap implements Plan2D {
 		this.xSize = xSize;
 		this.ySize = ySize;
 	}
+	
+	public Long getxSize() {
+		return xSize;
+	}
+
+
+	public Long getySize() {
+		return ySize;
+	}
 
 	@Override
-	public void verifyCoordinate(Coordinate2D coordinate) throws InvalidPositionException {
-		// TODO Auto-generated method stub
+	public Boolean verifyCoordinate(Coordinate2D coordinate) {
+		return null;
 	}
 	
 }
