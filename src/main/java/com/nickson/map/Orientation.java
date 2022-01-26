@@ -10,7 +10,27 @@ public enum Orientation {
 	private String  direction;
 	private Integer order;
 	
-	Orientation(String string, int i) {
-		// TODO Auto-generated constructor stub
+
+	public String getDirection() {
+		return this.direction;
+	}
+
+	public Integer getOrder() {
+		return this.order;
 	}	
+	
+	Orientation(String direction, Integer order) {
+		this.direction = direction;
+		this.order = order;
+	}
+
+	public static Orientation fromString(String direction) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static Orientation fromOrder(Integer order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
