@@ -22,7 +22,7 @@ public class RectangularMap implements Plan2D {
 
 	@Override
 	public Boolean verifyCoordinate(Coordinate2D coordinate) {
-		return null;
+		return coordinate.getX() < this.xSize && coordinate.getY() < this.ySize;
 	}
 	
 }
