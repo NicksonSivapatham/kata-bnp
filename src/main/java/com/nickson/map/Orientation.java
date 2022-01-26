@@ -25,12 +25,20 @@ public enum Orientation {
 	}
 
 	public static Orientation fromString(String direction) {
-		// TODO Auto-generated method stub
-		return null;
+		for (Orientation orientation : Orientation.values()) {
+			if (orientation.getDirection().equalsIgnoreCase(direction)) {
+				return orientation;
+			}
+		}
+		throw new EnumConstantNotPresentException(Orientation.class, direction);
 	}
 
 	public static Orientation fromOrder(Integer order) {
-		// TODO Auto-generated method stub
-		return null;
+		for (Orientation orientation : Orientation.values()) {
+			if (orientation.getOrder().equals(order)) {
+				return orientation;
+			}
+		}
+		throw new EnumConstantNotPresentException(Orientation.class, order.toString());
 	}
 }

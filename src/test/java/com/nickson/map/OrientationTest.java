@@ -19,6 +19,8 @@ class OrientationTest {
 		
 		orientation = Orientation.fromString("W");
 		assertEquals(Orientation.WEST, orientation);
+		
+		assertThrows(EnumConstantNotPresentException.class, () -> Orientation.fromString("Q"));
 	}
 
 	
@@ -35,5 +37,7 @@ class OrientationTest {
 		
 		orientation = Orientation.fromOrder(3);
 		assertEquals(Orientation.WEST, orientation);
+		
+		assertThrows(EnumConstantNotPresentException.class, () -> Orientation.fromOrder(5));
 	}
 }
