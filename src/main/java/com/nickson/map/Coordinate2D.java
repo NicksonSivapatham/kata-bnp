@@ -10,9 +10,10 @@ public class Coordinate2D {
 	
 	public Coordinate2D(Long x, Long y, Orientation orientation) {
 		super();
-		this.x = x;
-		this.y = y;
+		this.x = x == null || x < 0 ? 0 : x;
+		this.y = y == null || y < 0 ? 0 : y;
 		this.orientation = orientation;
+		this.orientation = orientation == null ? Orientation.NORTH : orientation;
 	}
 	
 	public Long getX() {
