@@ -15,6 +15,9 @@ class RectangularMapTest {
 		
 		Coordinate2D wrongCordinate = new Coordinate2D(3l, 2l, Orientation.EST);
 		assertFalse(rectangularMap.verifyCoordinate(wrongCordinate));
+		
+		wrongCordinate = new Coordinate2D(-3l, 2l, Orientation.EST);
+		assertFalse(rectangularMap.verifyCoordinate(wrongCordinate));
 	}
 
 }
