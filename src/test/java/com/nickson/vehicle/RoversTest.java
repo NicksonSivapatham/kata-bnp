@@ -104,8 +104,10 @@ class RoversTest {
 	@Test
 	void testVerifyItinerary() {
 		assertTrue(rover.verifyItinerary("LMRLLLRRM"));
+		assertTrue(rover.verifyItinerary("MMMMMM"));
 		
-		assertFalse(rover.verifyItinerary("LMRLLLXXD"));	
+		assertFalse(rover.verifyItinerary("LMRLLLXXD"));
+		assertFalse(rover.verifyItinerary("LM RLLL "));	
 	}
 
 }

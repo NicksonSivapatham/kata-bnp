@@ -1,5 +1,12 @@
 package com.nickson.vehicle;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.nickson.map.Coordinate2D;
 import com.nickson.map.Orientation;
 import com.nickson.map.Plan2D;
@@ -8,7 +15,7 @@ import com.nickson.vehicle.exception.InvalidPosition;
 
 public class Rovers implements Vehicle{
 
-	public static enum movement {L,M,R}
+	public static enum Movement {L,M,R}
 	
 	private Coordinate2D coordinate;
 
@@ -23,24 +30,108 @@ public class Rovers implements Vehicle{
 
 	@Override
 	public void navigate(String itinerary, Plan2D plan) throws InvalidItinerary, InvalidPosition {
-		// TODO Auto-generated method stub
-		
+		if (verifyItinerary(itinerary)) {
+			for (String movementString : itinerary.split("")) {
+				Movement nextMovement = Movement.valueOf(movementString);
+				switch (nextMovement) {
+				case M:
+					move(plan);
+					break;
+				case L:
+					turnLeft();
+					break;
+				case R:
+					turnRight();
+					break;
+				default:
+					break;
+				}
+			}
+		} else {
+			throw new InvalidItinerary("The rover can not execute some movement from the itinerary: " + itinerary);
+		}
 	}
 	
+	/**
+	 * Turn Rover to the left
+	 * @return new position
+	 */
 	public Orientation turnLeft() {
 		Integer leftOrientationOrder = Math.floorMod(coordinate.getOrientation().getOrder() - 1, 4);
-		return Orientation.fromOrder(leftOrientationOrder);
+		Orientation leftOrientation = Orientation.fromOrder(leftOrientationOrder);
+		coordinate = new Coordinate2D(coordinate.getX(), coordinate.getY(), leftOrientation);
+		return leftOrientation;
 	}
 	
+	/**
+	 * Turn Rover to the right
+	 * @return new position
+	 */
 	public Orientation turnRight() {
-		return coordinate.getOrientation();
+		Integer rightOrientationOrder = Math.floorMod(coordinate.getOrientation().getOrder() + 1, 4);
+		Orientation rightOrientation = Orientation.fromOrder(rightOrientationOrder);
+		coordinate = new Coordinate2D(coordinate.getX(), coordinate.getY(), rightOrientation);
+		return rightOrientation;
 	}
 	
+	/**
+	 * Move rover on the given plan
+	 * @param plan
+	 * @return new position
+	 * @throws InvalidPosition if rover goes out of the plan
+	 */
 	public Coordinate2D move(Plan2D plan) throws InvalidPosition{
-		return coordinate;
+		Coordinate2D nextCoordinate;
+		Long currentX = coordinate.getX();
+		Long currentY = coordinate.getY();
+		
+		switch (coordinate.getOrientation()) {
+		case NORTH:
+			currentY++;
+			break;
+		case SOUTH:
+			currentY--;	
+			break;
+		case WEST:
+			currentX--;
+			break;
+		case EST:
+			currentX++;
+			break;
+		default:
+			break;
+		}
+		
+		nextCoordinate = new Coordinate2D(currentX, currentY, coordinate.getOrientation());
+		if (plan.verifyCoordinate(nextCoordinate)) {
+			this.coordinate = nextCoordinate;
+		} else {
+			throw new InvalidPosition("The rover can't move to the next position, due to plan constraint");
+		}
+		return nextCoordinate;
 	}
 	
+	/**
+	 * Verify if the rover can execute movements of the given itinerary 
+	 * @param itinerary
+	 * @return
+	 */
 	public Boolean verifyItinerary(String itinerary) {
-		return false;
+		Set<String> itineraryDistinctActions =	new HashSet<>(Arrays.asList(itinerary.split("")));
+		
+		if (itineraryDistinctActions.size() > Movement.values().length) {
+			return false;
+		}
+		
+		Set<String> authorizeMovement = Arrays.asList(Movement.values()).stream()
+																		.map(Movement::toString).collect(Collectors.toCollection(HashSet::new));
+		
+		for(String move: itineraryDistinctActions) {
+			if (!authorizeMovement.contains(move)) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 }
