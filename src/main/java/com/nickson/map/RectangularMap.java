@@ -24,7 +24,7 @@ public class RectangularMap implements Plan2D {
 
 	@Override
 	public Boolean verifyCoordinate(Coordinate2D coordinate) {
-		return coordinate.getX() < this.xSize && coordinate.getY() < this.ySize 
+		return coordinate.getX() <= this.xSize && coordinate.getY() <= this.ySize 
 				&& coordinate.getX() >= 0 && coordinate.getY() >= 0;
 	}
 

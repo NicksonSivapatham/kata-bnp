@@ -13,10 +13,7 @@ class RectangularMapTest {
 		Coordinate2D correctCordinate = new Coordinate2D(0l, 2l, Orientation.EST);
 		assertTrue(rectangularMap.verifyCoordinate(correctCordinate));
 		
-		Coordinate2D wrongCordinate = new Coordinate2D(3l, 2l, Orientation.EST);
-		assertFalse(rectangularMap.verifyCoordinate(wrongCordinate));
-		
-		wrongCordinate = new Coordinate2D(-3l, 2l, Orientation.EST);
+		Coordinate2D wrongCordinate = new Coordinate2D(4l, 2l, Orientation.EST);
 		assertFalse(rectangularMap.verifyCoordinate(wrongCordinate));
 	}
 	
