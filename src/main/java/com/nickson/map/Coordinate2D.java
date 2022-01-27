@@ -10,8 +10,8 @@ public class Coordinate2D {
 	
 	public Coordinate2D(Long x, Long y, Orientation orientation) {
 		super();
-		this.x = x == null || x < 0 ? 0 : x;
-		this.y = y == null || y < 0 ? 0 : y;
+		this.x = x == null ? 0 : x;
+		this.y = y == null ? 0 : y;
 		this.orientation = orientation;
 		this.orientation = orientation == null ? Orientation.NORTH : orientation;
 	}
@@ -41,5 +41,10 @@ public class Coordinate2D {
 			return false;
 		Coordinate2D other = (Coordinate2D) obj;
 		return orientation == other.orientation && Objects.equals(x, other.x) && Objects.equals(y, other.y);
+	}
+
+	@Override
+	public String toString() {
+		return "Coordinate2D [x=" + x + ", y=" + y + ", orientation=" + orientation + "]";
 	}
 }
