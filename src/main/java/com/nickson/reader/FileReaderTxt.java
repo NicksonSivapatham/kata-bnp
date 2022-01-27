@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 public class FileReaderTxt implements FileReader{
 	
-	Logger logger = LoggerFactory.getLogger(FileReaderTxt.class);
+	private static Logger logger = LoggerFactory.getLogger(FileReaderTxt.class);
 	
 	@Override
 	public List<String> readFile(String pathFile) throws IOException {

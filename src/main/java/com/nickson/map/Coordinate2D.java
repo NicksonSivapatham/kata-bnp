@@ -45,6 +45,6 @@ public class Coordinate2D {
 
 	@Override
 	public String toString() {
-		return "Coordinate2D [x=" + x + ", y=" + y + ", orientation=" + orientation + "]";
+		return x + " " + y + " " + orientation.getDirection();
 	}
 }
