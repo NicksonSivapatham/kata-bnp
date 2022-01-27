@@ -17,6 +17,7 @@ public class FileReaderTxt implements FileReader{
 	
 	@Override
 	public List<String> readFile(String pathFile) throws IOException {
+		logger.info("Read file at {}", pathFile);
 		Path path = Paths.get(pathFile);
 		try (Stream<String> input = Files.lines(path))   {
 			return input.collect(Collectors.toList());
