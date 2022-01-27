@@ -73,7 +73,7 @@ class RoversTest {
 
 	@Test
 	void testMove() throws InvalidPosition {
-		Plan2D rectangularPlan = new RectangularMap(2l,2l);
+		Plan2D rectangularPlan = new RectangularMap(1l,1l);
 		
 		Coordinate2D newCoordinate = rover.move(rectangularPlan);
 		Coordinate2D expectedCoodinate = new Coordinate2D(0l,1l, Orientation.NORTH);
