@@ -19,5 +19,15 @@ class RectangularMapTest {
 		wrongCordinate = new Coordinate2D(-3l, 2l, Orientation.EST);
 		assertFalse(rectangularMap.verifyCoordinate(wrongCordinate));
 	}
+	
+	@Test
+	void testCreateWithBadInput() {
+		RectangularMap rectangularMap = new RectangularMap(-3l, -5l);
+		RectangularMap expectedMap = new RectangularMap(0l, 0l);
+		assertEquals(expectedMap, rectangularMap);
+		
+		rectangularMap = new RectangularMap(null, null);
+		assertEquals(expectedMap, rectangularMap);
+	}
 
 }
