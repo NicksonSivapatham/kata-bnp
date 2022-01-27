@@ -14,7 +14,7 @@ class FileReaderTxtTest {
 		FileReaderTxt reader = new FileReaderTxt();
 		List<String> expectedLines = List.of("Hello", "This is a", "test");
 		
-		List<String> lines = reader.readFile("src/main/resources/");
+		List<String> lines = reader.readFile("src/test/resources/inputForFileReaderTxt.txt");
 		
 		assertEquals(expectedLines, lines);
 	}
