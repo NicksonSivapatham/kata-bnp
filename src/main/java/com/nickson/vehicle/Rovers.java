@@ -2,14 +2,9 @@ package com.nickson.vehicle;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.nickson.map.Coordinate2D;
 import com.nickson.map.Orientation;
@@ -18,8 +13,6 @@ import com.nickson.vehicle.exception.InvalidItinerary;
 import com.nickson.vehicle.exception.InvalidPosition;
 
 public class Rovers implements Vehicle{
-	
-	private static Logger logger = LoggerFactory.getLogger(Rovers.class);
 			
 	public static enum Movement {L,M,R}
 	
@@ -54,7 +47,6 @@ public class Rovers implements Vehicle{
 
 	@Override
 	public void navigate(String itinerary, Plan2D plan) throws InvalidItinerary, InvalidPosition {
-		logger.info("Rover following itinerary: " + itinerary);
 		if (verifyItinerary(itinerary)) {
 			for (String movementString : itinerary.split("")) {
 				Movement nextMovement = Movement.valueOf(movementString);
@@ -73,7 +65,6 @@ public class Rovers implements Vehicle{
 				}
 			}
 		} else {
-			logger.error("The rover can not execute some movement from the itinerary: " + itinerary);
 			throw new InvalidItinerary("The rover can not execute some movement from the itinerary: " + itinerary);
 		}
 	}

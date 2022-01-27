@@ -8,21 +8,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class FileReaderTxt implements FileReader{
-	
-	private static Logger logger = LoggerFactory.getLogger(FileReaderTxt.class);
 	
 	@Override
 	public List<String> readFile(String pathFile) throws IOException {
-		logger.info("Read file at {}", pathFile);
 		Path path = Paths.get(pathFile);
 		try (Stream<String> input = Files.lines(path))   {
 			return input.collect(Collectors.toList());
 		} catch (IOException e) {
-			logger.error("Error during reading file at {}", pathFile);
 			throw e;
 		}
 	}
