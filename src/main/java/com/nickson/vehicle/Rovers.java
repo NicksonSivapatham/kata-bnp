@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,24 @@ public class Rovers implements Vehicle{
 	
 	public Coordinate2D getCoordinate() {
 		return coordinate;
+	}
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(coordinate);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rovers other = (Rovers) obj;
+		return Objects.equals(coordinate, other.coordinate);
 	}
 
 	@Override
